@@ -26,7 +26,18 @@ export const dashboardController = {
         title: request.payload.title,
       };
       await db.playlistStore.addPlaylist(newPlayList);
+      // refresh page with new playlist data
       return h.redirect("/dashboard");
     },
   },
+
+  deletePlaylist: {
+    handler: async function (request, h) {
+      const playlist = await db.playlistStore.getPlaylistById(request.params.id);
+      await db.playlistStore.deletePlaylistById(playlist._id);
+      // refrsh page with without deleted playlist
+      return h.redirect("/dashboard");
+    },
+  },
+
 };

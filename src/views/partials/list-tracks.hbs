@@ -19,6 +19,11 @@
         <td>
           {{duration}}
         </td>
+         <td> <!-- ".." for getting parent element in handlebars layout -->
+          <a href="/playlist/{{../playlist._id}}/deletetrack/{{_id}}" class="ui icon button">
+            <i class="fas fa-trash"></i>
+          </a>
+        </td>
       </tr>
     {{/each}}
   </tbody>

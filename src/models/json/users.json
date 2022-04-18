@@ -1,0 +1,18 @@
+{
+  "users": [
+    {
+      "firstName": "kek",
+      "lastName": "kekman",
+      "email": "kek@kekmail.com",
+      "password": "kek",
+      "_id": "2cd0a0f0-c737-4d71-873e-11d29cc04ac3"
+    },
+    {
+      "firstName": "Max",
+      "lastName": "Mustermann",
+      "email": "test@gmail.com",
+      "password": "test",
+      "_id": "c9afbc62-54a0-4a93-a049-a290a057bd83"
+    }
+  ]
+}

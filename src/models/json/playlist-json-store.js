@@ -3,19 +3,22 @@ import { v4 } from "uuid";
 import { JSONFile, Low } from "lowdb";
 import { trackJsonStore } from "./track-json-store.js";
 
+// Use JSON file for storage
 const db = new Low(new JSONFile("./src/models/json/playlists.json"));
 db.data = { playlists: [] };
 
 export const playlistJsonStore = {
   async getAllPlaylists() {
+    // Read data from JSON file, this will set db.data content
     await db.read();
     return db.data.playlists;
   },
 
   async addPlaylist(playlist) {
-    // await db.read();
+    await db.read();
     playlist._id = v4();
     db.data.playlists.push(playlist);
+    // write db.data content to file
     await db.write();
     return playlist;
   },

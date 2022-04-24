@@ -12,7 +12,7 @@ export const trackJsonStore = {
   },
 
   async addTrack(playlistId, track) {
-    // await db.read();
+    await db.read();
     track._id = v4();
     track.playlistid = playlistId;
     db.data.tracks.push(track);

@@ -12,7 +12,7 @@ export const userJsonStore = {
   },
 
   async addUser(user) {
-    // await db.read();
+    await db.read();
     user._id = v4();
     db.data.users.push(user);
     await db.write();

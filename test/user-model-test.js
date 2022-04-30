@@ -9,7 +9,8 @@ suite("User API tests", () => {
 
   // setup function to be run befor each test
   setup(async () => {
-    db.init();
+    // set model we want to test against
+    db.init("json");
     // test isolation: start tests from empty data store and add test data:
     await db.userStore.deleteAll();
     for (let i = 0; i < testUsers.length; i += 1) {

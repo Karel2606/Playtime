@@ -3,6 +3,7 @@ import { assert } from "chai";
 import { db } from "../src/models/db.js";
 // test data
 import { maggie, testUsers} from "./fixtures.js";
+import { assertSubset } from "./test-utils.js"
 
 // mocha runs all test in suite
 suite("User API tests", () => {
@@ -10,7 +11,7 @@ suite("User API tests", () => {
   // setup function to be run befor each test
   setup(async () => {
     // set model we want to test against
-    db.init("json");
+    db.init("mongo");
     // test isolation: start tests from empty data store and add test data:
     await db.userStore.deleteAll();
     for (let i = 0; i < testUsers.length; i += 1) {
@@ -23,7 +24,7 @@ suite("User API tests", () => {
   test("create a user", async () => {
     const newUser = await db.userStore.addUser(maggie);
     // assert methode to check if code behave as expected
-    assert.equal(newUser, maggie);
+    assertSubset(newUser, maggie);
   });
 
   test("delete all users", async () => {

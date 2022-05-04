@@ -1,12 +1,12 @@
 import { assert } from "chai";
 // system to be tested
-import { db } from "../src/models/db.js";
+import { db } from "../../src/models/db.js";
 // test data
-import { maggie, testUsers} from "./fixtures.js";
-import { assertSubset } from "./test-utils.js"
+import { maggie, testUsers} from "../fixtures.js";
+import { assertSubset } from "../test-utils.js"
 
 // mocha runs all test in suite
-suite("User API tests", () => {
+suite("User Model tests", () => {
 
   // setup function to be run befor each test
   setup(async () => {

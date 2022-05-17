@@ -1,6 +1,8 @@
 // controller for user endpoint/http requests and response
 import Boom from "@hapi/boom";
 import { db } from "../models/db.js";
+import { UserArray } from "../models/joi-schemas.js";
+import { validationError } from "./logger.js";
 
 export const userApi = {
   create: {
@@ -29,6 +31,12 @@ export const userApi = {
         return Boom.serverUnavailable("Database Error");
       }
     },
+    // annotating userApi.find for documentation
+    tags: ["api"],
+    description: "Get all userApi",
+    notes: "Returns details of all userApi",
+    // add schema validation model of joi 
+    response: { schema: UserArray, failAction: validationError}
   },
 
   findOne: {

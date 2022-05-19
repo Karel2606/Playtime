@@ -1,17 +1,17 @@
 // controller for user endpoint/http requests and response
 import Boom from "@hapi/boom";
 import { db } from "../models/db.js";
-import { UserArray } from "../models/joi-schemas.js";
+import { UserSpec, UserSpecPlus, IdSpec, UserArray } from "../models/joi-schemas.js";
 import { validationError } from "./logger.js";
 
 export const userApi = {
   create: {
     auth: false,
-    handler: async function(request, h) {
+    handler: async function (request, h) {
       try {
         const user = await db.userStore.addUser(request.payload);
         if (user) {
-            // http response code: resource created
+          // http response code: resource created
           return h.response(user).code(201);
         }
         return Boom.badImplementation("error creating user");
@@ -22,13 +22,14 @@ export const userApi = {
     tags: ["api"],
     description: "Create a User",
     notes: "Returns the newly created user",
+    // input validation without fields of mongo (id, version)!
     validate: { payload: UserSpec, failAction: validationError },
-    response: { schema: UserSpec, failAction: validationError },
+    response: { schema: UserSpecPlus, failAction: validationError },
   },
 
   find: {
     auth: false,
-    handler: async function(request, h) {
+    handler: async function (request, h) {
       try {
         const users = await db.userStore.getAllUsers();
         return users;
@@ -40,8 +41,8 @@ export const userApi = {
     tags: ["api"],
     description: "Get all userApi",
     notes: "Returns details of all userApi",
-    // add schema validation model of joi 
-    response: { schema: UserArray, failAction: validationError}
+    // add schema validation model of joi
+    response: { schema: UserArray, failAction: validationError },
   },
 
   findOne: {
@@ -61,7 +62,7 @@ export const userApi = {
     description: "Get a specific user",
     notes: "Returns user details",
     validate: { params: { id: IdSpec }, failAction: validationError },
-    response: { schema: UserSpec, failAction: validationError }
+    response: { schema: UserSpecPlus, failAction: validationError },
   },
 
   deleteAll: {

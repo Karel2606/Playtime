@@ -3,7 +3,7 @@ import Joi from "joi";
 export const IdSpec = Joi.alternatives().try(Joi.string(), Joi.object()).description("a valid ID");
 
 // description of validation rules for login form
-export const UserCredentialsSpec = Joi.Object()
+export const UserCredentialsSpec = Joi.object()
   .keys({
     email: Joi.string().email().example("homer@simpson.com").required(),
     password: Joi.string().example("secret").required(),

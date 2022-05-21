@@ -52,6 +52,15 @@ export const playtimeService = {
     const response = await axios.delete(`${this.playtimeUrl}/api/playlists/${id}`);
     return response;
   },
+// new methods to auth users: accessing endpoints with valid user 
+// --> set tokenheader for all subsequent axios requests, until clearAuth called!
+  async authenticate(user) {
+    const response = await axios.post(`${this.playtimeUrl}/api/users/authenticate`, user);
+    axios.defaults.headers.common.Authorization = `Bearer ${  response.data.token}`;
+    return response.data;
+  },
 
-
+  async clearAuth() {
+    axios.defaults.headers.common.Authorization = "";
+  }
 };

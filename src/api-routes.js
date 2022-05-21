@@ -22,4 +22,6 @@ export const apiRoutes = [
   { method: "POST", path: "/api/playlists/{id}/tracks", config: trackApi.create },
   { method: "DELETE", path: "/api/tracks", config: trackApi.deleteAll },
   { method: "DELETE", path: "/api/tracks/{id}", config: trackApi.deleteOne },
+  // new route for authenticate user
+  { method: "POST", path: "/api/users/authenticate", config: userApi.authenticate },
 ];

@@ -8,9 +8,13 @@ suite("Playlist API tests", () => {
   let user = null; 
 
   setup(async () => {
+    user = await playtimeService.createUser(maggie);
+    await playtimeService.authenticate(maggie);
     await playtimeService.deleteAllPlaylists();
     await playtimeService.deleteAllUsers();
     user = await playtimeService.createUser(maggie);
+    // trigger new bearer token, retrieved from the authenticate route, and automatically transmitted with each subsequent request
+    await playtimeService.authenticate(maggie);
     mozart.userid = user._id;
   });
   teardown(async () => {

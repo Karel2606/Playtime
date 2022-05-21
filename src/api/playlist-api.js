@@ -6,7 +6,9 @@ import { validationError } from "./logger.js";
 
 export const playlistApi = {
   create: {
-    auth: false,
+    auth: {
+      strategy: "jwt",
+    },
     handler: async function(request, h) {
       try {
         const playlist = await db.playlistStore.addPlaylist(request.payload);
@@ -27,7 +29,9 @@ export const playlistApi = {
   },
 
     find: {
-      auth: false,
+      auth: {
+        strategy: "jwt",
+      },
       handler: async function (request, h) {
         try {
           const playlists = await db.playlistStore.getAllPlaylists();
@@ -43,7 +47,9 @@ export const playlistApi = {
     },
   
     findOne: {
-      auth: false,
+      auth: {
+        strategy: "jwt",
+      },
       async handler(request) {
         try {
           const playlist = await db.playlistStore.getPlaylistById(request.params.id);
@@ -63,7 +69,9 @@ export const playlistApi = {
     },
 
     deleteOne: {
-      auth: false,
+      auth: {
+        strategy: "jwt",
+      },
       handler: async function (request, h) {
         try {
           const playlist = await db.playlistStore.getPlaylistById(request.params.id);
@@ -82,7 +90,9 @@ export const playlistApi = {
     },
   
     deleteAll: {
-      auth: false,
+      auth: {
+        strategy: "jwt",
+      },
       handler: async function (request, h) {
         try {
           await db.playlistStore.deleteAllPlaylists();

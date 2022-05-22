@@ -28,6 +28,16 @@ const swaggerOptions = {
     title: "Playtime API",
     version: "0.1",
   },
+  // for auth-button on swagger docu page --> to enter token to be used for all requests:
+  // first create user and authenticate (open routes) for a token!
+  securityDefinitions: {
+    jwt: {
+      type: "apiKey",
+      name: "Authorization",
+      in: "header"
+    }
+  },
+  security: [{ jwt: [] }]
 };
 
 async function init() {

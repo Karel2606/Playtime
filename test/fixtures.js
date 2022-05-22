@@ -72,3 +72,9 @@
   ];
 
   export const serviceUrl = "http://localhost:3000";
+
+  // for authenticate api
+  export const maggieCredentials = {
+    email: "maggie@simpson.com",
+    password: "secret"
+  };

@@ -60,3 +60,11 @@ export const PlaylistSpecPlus = PlaylistSpec.keys({
 }).label("PlaylistPlus");
 
 export const PlaylistArraySpec = Joi.array().items(PlaylistSpecPlus).label("PlaylistArray");
+
+// schema for response of authenticate api
+export const JwtAuth = Joi.object()
+  .keys({
+    success: Joi.boolean().example("true").required(),
+    token: Joi.string().example("eyJhbGciOiJND.g5YmJisIjoiaGYwNTNjAOhE.gCWGmY5-YigQw0DCBo").required(),
+  })
+  .label("JwtAuth");

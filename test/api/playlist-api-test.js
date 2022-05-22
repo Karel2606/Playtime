@@ -1,7 +1,7 @@
 import { assert } from "chai"
 import { playtimeService } from "./playtime-service.js";
 import { assertSubset} from "../test-utils.js"
-import { testPlaylists, mozart, maggie } from "../fixtures.js"
+import { testPlaylists, mozart, maggie, maggieCredentials } from "../fixtures.js"
 
 suite("Playlist API tests", () => {
 
@@ -9,12 +9,12 @@ suite("Playlist API tests", () => {
 
   setup(async () => {
     user = await playtimeService.createUser(maggie);
-    await playtimeService.authenticate(maggie);
+    await playtimeService.authenticate(maggieCredentials);
     await playtimeService.deleteAllPlaylists();
     await playtimeService.deleteAllUsers();
     user = await playtimeService.createUser(maggie);
     // trigger new bearer token, retrieved from the authenticate route, and automatically transmitted with each subsequent request
-    await playtimeService.authenticate(maggie);
+    await playtimeService.authenticate(maggieCredentials);
     mozart.userid = user._id;
   });
   teardown(async () => {
